@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Hamburger Menu</title>
+</head>
+<body>
+    <p class="text1"></p>
+        <p class="text2"></p>
+            <p class="text3"></p>
+
+
+    <script>
+      "use strict";
+class Hamburger {
+  constructor(size, fillings) {
+    this.size = size;
+    this.fillings = fillings;
+    this.extra = [];
+  }
+
+  addExtra(extra) {
+    this.extra.push(extra);
+  }
+
+  calculate(attribute) {
+    const items = [this.size, this.fillings, ...this.extra];
+    return items.reduce((total, item) => total + item[attribute], 0);
+  }
+
+  price() {
+    return this.calculate("price");
+  }
+
+  calories() {
+    return this.calculate("calories");
+  }
+}
+
+const sizes = {
+  small: { price: 50, calories: 20 },
+  large: { price: 100, calories: 40 }
+};
+
+const fillings = {
+  cheese: { price: 10, calories: 20 },
+  salad: { price: 20, calories: 5 },
+  potato: { price: 15, calories: 10 }
+};
+
+const extra = {
+  spice: { price: 15, calories: 0 },
+  mayo: { price: 20, calories: 5 }
+};
+
+try{
+var hamburger = new Hamburger(sizes.small, fillings.cheese);
+hamburger.addExtra(extra.mayo);
+} catch(err){
+    alert('The mistake is here');
+}
+
+
+console.log("Calories: " + hamburger.calories());
+const row1 = document.querySelector('.text1').innerHTML = "Сalories: " + hamburger.calories();
+
+console.log("Price: " + hamburger.price());
+const row2 = document.querySelector('.text2').innerHTML = "Price: " + hamburger.price();
+
+hamburger.addExtra(extra.spice);
+
+console.log("Price with spice: " + hamburger.price());
+const row3 = document.querySelector('.text3').innerHTML = "Price with spice: " + hamburger.price();
+
+
+    </script>
+</body>
+</html>
